@@ -24,5 +24,6 @@ switch ($route[0]) {
         $controller = $route[1];
         $params = $route[2];
         $container->call($controller, $params);
+        break;
     }
 }
