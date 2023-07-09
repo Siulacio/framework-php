@@ -5,7 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $containerBuilder = new \DI\ContainerBuilder;
 $containerBuilder->useAutowiring(false);
 //load container configurations
-$containerBuilder->addDefinitions(__DIR__ . '/../bootstrap/config.php');
+$containerBuilder->addDefinitions(base_path('bootstrap/config.php'));
 
 try {
     //creates the container
