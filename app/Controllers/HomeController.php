@@ -2,10 +2,19 @@
 
 namespace Application\Controllers;
 
+use Application\Providers\Doctrine;
+
 class HomeController
 {
-    public function index ()
+    protected $doctrine;
+
+    public function __construct(Doctrine $doctrine)
     {
-        \Kint::dump('Hola Mundo!');
+        $this->doctrine = $doctrine;
+    }
+
+    public function index()
+    {
+        \Kint::dump($this->doctrine);
     }
 }
