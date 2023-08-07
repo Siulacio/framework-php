@@ -3,13 +3,13 @@
 namespace Application\Models\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="users")
  */
-class User
+class User extends Entity
 {
     /**
      * @ORM\Id
@@ -21,7 +21,7 @@ class User
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="El nombre no puede estar vacío")
-     * @Assert\Length(min="2" minMessage="El nombre debe tener al menos 2 caracteres")
+     * @Assert\Length(min="2", minMessage="El nombre debe tener al menos 2 caracteres")
      */
     protected $name;
 
@@ -35,7 +35,7 @@ class User
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="El password no puede estar vacío")
-     * @Assert\Length(min="6" minMessage="El password debe tener al menos 6 caracteres")
+     * @Assert\Length(min="6", minMessage="El password debe tener al menos 6 caracteres")
      */
     protected $password;
 

@@ -2,6 +2,7 @@
 
 namespace Application\Controllers;
 
+use Application\Models\Entities\User;
 use Application\Providers\Doctrine;
 
 class HomeController
@@ -15,6 +16,7 @@ class HomeController
 
     public function index()
     {
-        \Kint::dump($this->doctrine);
+        $user = $this->doctrine->em->getRepository(User::class)->find(1);
+        \Kint::dump($user);
     }
 }
