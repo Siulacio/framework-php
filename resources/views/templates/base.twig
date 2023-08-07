@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Framework PHP{% if page_title is defined %} | {{ page_title }}{% endif %}</title>
+        <meta name="robots" content="{% if page_meta_robots is defined %} | {{ page_meta_robots }}{% endif %}">
+        <meta name="description" content="{% if page_meta_description is defined %}{{ page_meta_description }}{% endif %}">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ TwigFunctions('base_url', 'components/bootstrap/dist/css/bootstrap.min.css') | raw }}">
+        {% endblock %}
+
+    </head>
+    <body>
+        {% include('templates/header.twig') %}
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% include('templates/footer.twig') %}
+    </body>
+</html>

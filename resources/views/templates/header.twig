@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            {% if not TwigFunctions('user_is_logged') %}
+                <li class="{{ TwigFunctions('first_uri_segment') == 'login' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ TwigFunctions('base_url', 'login') }}">Iniciar sesión</a>
+                </li>
+                <li class="{{ TwigFunctions('first_uri_segment') == 'register' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ TwigFunctions('base_url', 'register') }}">Registrarme</a>
+                </li>
+            {% else %}
+                <li class="{{ TwigFunctions('first_uri_segment') == 'profile' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ TwigFunctions('base_url', 'profile') }}">Perfil</a>
+                </li>
+                <li class="{{ TwigFunctions('first_uri_segment') == 'blog' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ TwigFunctions('base_url', 'blog') }}">Blog</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ TwigFunctions('base_url', 'logout') }}">Cerrar sesión</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

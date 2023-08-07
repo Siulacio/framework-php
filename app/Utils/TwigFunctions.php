@@ -15,7 +15,7 @@ class TwigFunctions
 
     public static function base_url(string $url)
     {
-        base_url($url);
+        return base_url($url);
     }
 
     public static function first_uri_segment()
@@ -45,7 +45,7 @@ class TwigFunctions
         return null;
     }
 
-    public function user_is_logged(): mixed
+    public static function user_is_logged(): ?string
     {
         $session = self::session();
         return $session->getSegment('Blog')->get('user');
@@ -54,5 +54,10 @@ class TwigFunctions
     public static function session(): Session
     {
         return self::$container->get(Session::class);
+    }
+
+    public static function copyright($name)
+    {
+        return "{$name}, todos los derechos reservados";
     }
 }
