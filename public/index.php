@@ -5,6 +5,8 @@ ini_set('display_errors', true);
 
 $container = require_once __DIR__ . '/../bootstrap/container.php';
 
+$container->get('SharedContainerTwig');
+
 $dispatcher = require_once base_path('routes/web.php');
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
