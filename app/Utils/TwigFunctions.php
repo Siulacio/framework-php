@@ -24,7 +24,7 @@ class TwigFunctions
         return str_replace("-", " ", $page[0]);
     }
 
-    public static function flash($params): mixed
+    public static function flash($params)
     {
         $session = self::session();
         $flash = $session->getSegment('Blog')->getFlash($params[0]);

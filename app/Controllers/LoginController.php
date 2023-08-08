@@ -4,16 +4,20 @@ namespace Application\Controllers;
 
 use Application\Providers\View;
 use Application\Validators\LoginValidator;
+use Aura\Session\Session;
 use Respect\Validation\Exceptions\NestedValidationException;
 
 class LoginController
 {
     protected View $view;
     protected LoginValidator $validator;
-    public function __construct(View $view, LoginValidator $validator)
+    protected Session $session;
+
+    public function __construct(View $view, LoginValidator $validator, Session $session)
     {
         $this->view = $view;
         $this->validator = $validator;
+        $this->session = $session;
     }
 
     public function showLoginForm()
@@ -40,6 +44,8 @@ class LoginController
                     }
                 }
 
+                $this->session->getSegment('Blog')->setFlash('errors', join('<br/>', $arrayErrors));
+                $this->session->getSegment('Blog')->setFlash('post', $_POST);
                 return redirect('login');
             }
         }

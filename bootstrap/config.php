@@ -16,6 +16,7 @@ return [
     LoginController::class => \DI\create()->constructor(
         \DI\get(View::class),
         \DI\get(LoginValidator::class),
+        \DI\get(Session::class),
     ),
     Doctrine::class => function (\Psr\Container\ContainerInterface $container) {
         return new Doctrine($container);
