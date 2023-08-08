@@ -45,7 +45,7 @@ class TwigFunctions
         return null;
     }
 
-    public static function user_is_logged(): ?string
+    public static function user_is_logged()
     {
         $session = self::session();
         return $session->getSegment('Blog')->get('user');

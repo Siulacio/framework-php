@@ -2,6 +2,7 @@
 
 namespace Application\Controllers;
 
+use Application\Libraries\Auth;
 use Application\Libraries\BCrypt;
 use Application\Models\Entities\User;
 use Application\Providers\Doctrine;
@@ -28,7 +29,7 @@ class LoginController
         echo $this->view->render('login.twig');
     }
 
-    public function login(Doctrine $doctrine, BCrypt $bcrypt)
+    public function login(Doctrine $doctrine, BCrypt $bcrypt, Auth $auth)
     {
         try {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -41,7 +42,8 @@ class LoginController
 
             if ($user) {
                 if ($bcrypt->check_password($password, $user->password)) {
-                    \Kint::dump($user);
+                    $auth->generateUserSession($user);
+                    return redirect('profile');
                 }
             }
 

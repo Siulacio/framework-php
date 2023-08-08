@@ -2,6 +2,7 @@
 
 use Application\Controllers\HomeController;
 use Application\Controllers\LoginController;
+use Application\Libraries\Auth;
 use Application\Libraries\BCrypt;
 use Application\Providers\Doctrine;
 use Application\Providers\View;
@@ -33,4 +34,5 @@ return [
     },
     LoginValidator::class => \DI\create(LoginValidator::class),
     BCrypt::class => \DI\create(BCrypt::class),
+    Auth::class => \DI\create(Auth::class)->constructor(\DI\get(Session::class)),
 ];
