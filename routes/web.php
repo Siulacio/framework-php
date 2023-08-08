@@ -6,4 +6,5 @@ return \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $route) {
 
     // login routes
     $route->addRoute('GET', '/login', ['Application\Controllers\LoginController', 'showLoginForm']);
+    $route->addRoute('POST', '/login', ['Application\Controllers\LoginController', 'login']);
 });

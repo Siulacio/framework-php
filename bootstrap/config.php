@@ -5,6 +5,7 @@ use Application\Controllers\LoginController;
 use Application\Providers\Doctrine;
 use Application\Providers\View;
 use Application\Utils\TwigFunctions;
+use Application\Validators\LoginValidator;
 use Aura\Session\Session;
 
 return [
@@ -12,7 +13,10 @@ return [
         return parse_ini_file(base_path('app/Config/database.ini'));
     },
     HomeController::class => \DI\create()->constructor(\DI\get(Doctrine::class)),
-    LoginController::class => \DI\create()->constructor(\DI\get(View::class)),
+    LoginController::class => \DI\create()->constructor(
+        \DI\get(View::class),
+        \DI\get(LoginValidator::class),
+    ),
     Doctrine::class => function (\Psr\Container\ContainerInterface $container) {
         return new Doctrine($container);
     },
@@ -24,4 +28,5 @@ return [
     {
         return (new \Aura\Session\SessionFactory())->newInstance($_COOKIE);
     },
+    LoginValidator::class => \DI\create(LoginValidator::class),
 ];
