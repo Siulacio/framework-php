@@ -2,6 +2,7 @@
 
 use Application\Controllers\HomeController;
 use Application\Controllers\LoginController;
+use Application\Libraries\BCrypt;
 use Application\Providers\Doctrine;
 use Application\Providers\View;
 use Application\Utils\TwigFunctions;
@@ -17,6 +18,7 @@ return [
         \DI\get(View::class),
         \DI\get(LoginValidator::class),
         \DI\get(Session::class),
+        \DI\get(Doctrine::class),
     ),
     Doctrine::class => function (\Psr\Container\ContainerInterface $container) {
         return new Doctrine($container);
@@ -30,4 +32,5 @@ return [
         return (new \Aura\Session\SessionFactory())->newInstance($_COOKIE);
     },
     LoginValidator::class => \DI\create(LoginValidator::class),
+    BCrypt::class => \DI\create(BCrypt::class),
 ];

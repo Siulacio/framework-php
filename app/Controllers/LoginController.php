@@ -2,6 +2,9 @@
 
 namespace Application\Controllers;
 
+use Application\Libraries\BCrypt;
+use Application\Models\Entities\User;
+use Application\Providers\Doctrine;
 use Application\Providers\View;
 use Application\Validators\LoginValidator;
 use Aura\Session\Session;
@@ -25,7 +28,7 @@ class LoginController
         echo $this->view->render('login.twig');
     }
 
-    public function login()
+    public function login(Doctrine $doctrine, BCrypt $bcrypt)
     {
         try {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -33,6 +36,17 @@ class LoginController
             $password = $_POST['password'];
 
             $this->validator->validate();
+
+            $user = $doctrine->em->getRepository(User::class)->findOneBy(['email' => $email]);
+
+            if ($user) {
+                if ($bcrypt->check_password($password, $user->password)) {
+                    \Kint::dump($user);
+                }
+            }
+
+            $this->session->getSegment('Blog')->setFlash('errors', 'Los datos son incorrectos.');
+            return redirect('login');
 
         } catch (NestedValidationException $exception) {
             $errors = $exception->findMessages($this->validator->getMessages());
