@@ -13,6 +13,7 @@
             <div class="card-body">
 
                 {{ TwigFunctions('flash', ['errors', 'danger']) | raw }}
+                {{ TwigFunctions('flash', ['message', 'info']) | raw }}
 
                 <form action="{{ TwigFunctions('base_url', 'login') }}" method="POST">
                     <div class="form-group">

@@ -1,0 +1,39 @@
+{% extends "templates/base.twig" %}
+
+{% set page_title = "Registro" %}
+{% set page_meta_description = "Regístrate ahora, es gratis!" %}
+{% set page_meta_robots = "index, follow" %}
+
+{% block body %}
+
+    <div class="row mt-5">
+        <div class="col card">
+
+            <div class="card-header">
+                Registro de usuarios
+            </div>
+
+            <div class="card-body">
+
+                {{ TwigFunctions('flash', ['errors', 'danger']) | raw }}
+
+                <form action="{{ TwigFunctions('base_url', 'register') }}" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input name="name" autocomplete="off" value="{{ TwigFunctions('flash', ['post']).name }}" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input name="email" autocomplete="off" value="{{ TwigFunctions('flash', ['post']).email }}" type="email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input name="password" autocomplete="off" type="password" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Registrarme</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

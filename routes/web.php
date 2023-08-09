@@ -7,4 +7,8 @@ return \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $route) {
     // login routes
     $route->addRoute('GET', '/login', ['Application\Controllers\LoginController', 'showLoginForm']);
     $route->addRoute('POST', '/login', ['Application\Controllers\LoginController', 'login']);
+
+    // register routes
+    $route->addRoute('GET', '/register', ['Application\Controllers\RegisterController', 'showRegisterForm']);
+    $route->addRoute('POST', '/register', ['Application\Controllers\RegisterController', 'register']);
 });
