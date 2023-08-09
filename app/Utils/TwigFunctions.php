@@ -56,6 +56,11 @@ class TwigFunctions
         return self::$container->get(Session::class);
     }
 
+    public static function user()
+    {
+        return self::session()->getSegment('Blog')->get('user');
+    }
+
     public static function copyright($name)
     {
         return "{$name}, todos los derechos reservados";

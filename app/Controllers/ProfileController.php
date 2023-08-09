@@ -2,6 +2,7 @@
 
 namespace Application\Controllers;
 
+use Application\Providers\View;
 use Aura\Session\Session;
 
 class ProfileController
@@ -13,8 +14,9 @@ class ProfileController
         $this->session = $session;
     }
 
-    public function index()
+    public function index(View $view)
     {
+        echo $view->render('profile.twig');
     }    
 
 }

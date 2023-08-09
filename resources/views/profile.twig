@@ -1,0 +1,17 @@
+{% extends "templates/base.twig" %}
+
+{% block body %}
+
+    <div class="row mt-5">
+        <div class="col card">
+
+            <div class="card-header">
+                Bienvenido &nbsp; {{ TwigFunctions('user').id }} - {{ TwigFunctions('user').email }}
+            </div>
+
+            <div class="card-body">
+                <p>Tu nombre es: &nbsp; {{ TwigFunctions('user').name }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
