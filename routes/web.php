@@ -11,4 +11,7 @@ return \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $route) {
     // register routes
     $route->addRoute('GET', '/register', ['Application\Controllers\RegisterController', 'showRegisterForm']);
     $route->addRoute('POST', '/register', ['Application\Controllers\RegisterController', 'register']);
+
+    // profiles routes
+    $route->addRoute('GET', '/profile', ['Application\Controllers\ProfileController', 'index', 'auth']);
 });

@@ -25,6 +25,18 @@ switch ($route[0]) {
     case \FastRoute\Dispatcher::FOUND: {
         $controller = $route[1];
         $params = $route[2];
+
+        if (isset($route[1][2]) && $route[1][2] === 'auth') {
+            $session = $container->get(\Aura\Session\Session::class);
+            $segment = $session->getSegment('Blog');
+            if ( !$segment->get('user')) {
+                $segment->setFlash('errors', 'Acceso denegado');
+                return redirect('login');
+            } else {
+                $controller = [$route[1][0], $route[1][1]];
+                $params = $route[2];
+            }
+        }
         $container->call($controller, $params);
         break;
     }

@@ -2,6 +2,7 @@
 
 use Application\Controllers\HomeController;
 use Application\Controllers\LoginController;
+use Application\Controllers\ProfileController;
 use Application\Controllers\RegisterController;
 use Application\Libraries\Auth;
 use Application\Libraries\BCrypt;
@@ -23,6 +24,7 @@ return [
         \DI\get(Doctrine::class),
     ),
     RegisterController::class => \DI\create()->constructor(\DI\get(Session::class)),
+    ProfileController::class => \DI\create()->constructor(\DI\get(Session::class)),
     Doctrine::class => function (\Psr\Container\ContainerInterface $container) {
         return new Doctrine($container);
     },
