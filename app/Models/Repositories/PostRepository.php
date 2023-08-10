@@ -2,7 +2,21 @@
 
 namespace Application\Models\Repositories;
 
-class PostRepository
-{
+use Application\Models\Entities\Post;
+use Doctrine\ORM\EntityRepository;
 
+class PostRepository extends EntityRepository
+{
+    protected string $entity = Post::class;
+
+    public function getPostsPaginated(int $offset = 0, int $limit = 10): mixed
+    {
+        $dql = "SELECT p FROM {$this->entity} p ORDER BY p.id";
+        $query = $this->_em
+            ->createQuery($dql)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+
+        return $query->execute();
+    }
 }
