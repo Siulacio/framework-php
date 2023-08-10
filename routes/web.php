@@ -14,4 +14,7 @@ return \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $route) {
 
     // profiles routes
     $route->addRoute('GET', '/profile', ['Application\Controllers\ProfileController', 'index', 'auth']);
+
+    //logout routes
+    $route->addRoute('GET', '/logout', ['Application\Controllers\ProfileController', 'logout', 'auth']);
 });
