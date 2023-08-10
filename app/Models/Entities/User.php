@@ -2,6 +2,7 @@
 
 namespace Application\Models\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -49,8 +50,18 @@ class User extends Entity
      */
     protected $updated_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     */
+    protected $posts;
+
     public function __construct()
     {
         $this->created_at = new \DateTime('now');
+        $this->posts = new ArrayCollection;
+    }
+
+    public function getPosts() {
+        return $this->posts->toArray();
     }
 }
