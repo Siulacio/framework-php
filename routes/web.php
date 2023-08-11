@@ -17,4 +17,7 @@ return \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $route) {
 
     //logout routes
     $route->addRoute('GET', '/logout', ['Application\Controllers\ProfileController', 'logout', 'auth']);
+
+    // blog routes
+    $route->addRoute('GET', '/blog[/{page:\d+}]', ['Application\Controllers\BlogController', 'index', 'auth']);
 });

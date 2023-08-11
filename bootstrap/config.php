@@ -1,5 +1,6 @@
 <?php
 
+use Application\Controllers\BlogController;
 use Application\Controllers\HomeController;
 use Application\Controllers\LoginController;
 use Application\Controllers\ProfileController;
@@ -25,6 +26,7 @@ return [
     ),
     RegisterController::class => \DI\create()->constructor(\DI\get(Session::class)),
     ProfileController::class => \DI\create()->constructor(\DI\get(Session::class)),
+    BlogController::class => \DI\create(),
     Doctrine::class => function (\Psr\Container\ContainerInterface $container) {
         return new Doctrine($container);
     },
