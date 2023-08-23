@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Applications\Models\Repositories\PostRepository")
+ * @ORM\Entity(repositoryClass="Application\Models\Repositories\PostRepository")
  * @ORM\Table(name="posts")
  */
 class Post extends Entity

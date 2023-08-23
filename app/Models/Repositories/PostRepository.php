@@ -7,9 +7,9 @@ use Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository
 {
-    protected string $entity = Post::class;
+    protected $entity = Post::class;
 
-    public function getPostsPaginated(int $offset = 0, int $limit = 10): mixed
+    public function getPostsPaginated(int $offset = 0, int $limit = 10)
     {
         $dql = "SELECT p FROM {$this->entity} p ORDER BY p.id";
         $query = $this->_em
